@@ -1,0 +1,21 @@
+POST localhost:8080/card/bank/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzMDI3NjQsImV4cCI6MTY1ODUxODc2NCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MjE2NWJlODAxODIxNjViZWU4OTAwMDIifQ.SnMU41PpchrclHyad0TN6X31AHStZGYdlLzcTknwRDU
+
+{
+  "balance": 100000000,
+  "clientId": "ff808081821a728901821a7369970000"
+}
+
+###
+PUT localhost:8080/card/bank/assign_phone
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzMDI3NjQsImV4cCI6MTY1ODUxODc2NCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MjE2NWJlODAxODIxNjViZWU4OTAwMDIifQ.SnMU41PpchrclHyad0TN6X31AHStZGYdlLzcTknwRDU
+
+{
+  "id": "4028ab42821a8df001821a8e05520000",
+  "phone": "5555"
+}
+
+###
+GET localhost:8080/card/company/get_card/4028ab42821a8df001821a8e05520000

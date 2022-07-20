@@ -1,0 +1,12 @@
+POST localhost:8080/card/bank/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzMDExMTgsImV4cCI6MTY1ODUxNzExOCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MjE2NWJlODAxODIxNjViZWU4OTAwMDIifQ.IB9sRScHPSK3pFuNh_ii0fssKxRuhAToSpmz4MeCbNI
+
+{
+  "name": "Vali",
+  "surname": "Valiyev",
+  "middleName": "Valijon",
+  "phone": "123",
+  "passportSeries": "AA",
+  "passportNumber": "1234568"
+}

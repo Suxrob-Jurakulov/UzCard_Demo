@@ -1,0 +1,11 @@
+POST localhost:8080/company/public/create
+Content-Type: application/json
+
+{
+  "name": "QORA bank",
+  "address": "Tashkent",
+  "contact": "qora_bank@gmail.com",
+  "username": "bank",
+  "password": "123",
+  "role": "ROLE_BANK"
+}

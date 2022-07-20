@@ -1,0 +1,31 @@
+POST localhost:8080/auth/public/login
+Content-Type: application/json
+
+{
+  "username": "bank",
+  "password": "123"
+}
+###
+
+POST localhost:8080/auth/public/login
+Content-Type: application/json
+
+{
+  "username": "click",
+  "password": "123"
+}
+
+
+###
+POST http://localhost:8080/auth/public/login
+Content-Type: application/json
+
+{
+  "username": "uz_card_admin",
+  "password": "123"
+}
+
+###
+
+###
+POST http://localhost:8080/auth/public/login

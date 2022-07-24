@@ -17,4 +17,5 @@ public interface CompanyRepository extends PagingAndSortingRepository<CompanyEnt
     @Modifying
     @Query(value = "update CompanyEntity set status = ?1 where id = ?2")
     void deleteCompany(GeneralStatus status, String id);
+
 }

@@ -1,5 +1,6 @@
 package com.company.config;
 
+import com.company.dto.JwtDTO;
 import com.company.entity.CompanyEntity;
 import com.company.entity.ProfileEntity;
 import com.company.enums.GeneralRole;
@@ -21,6 +22,10 @@ public class CustomUserDetails implements UserDetails {
     private GeneralStatus status;
     private GeneralRole role;
 
+    public CustomUserDetails(JwtDTO dto) {
+        this.id = dto.getId();
+        this.role = GeneralRole.valueOf(dto.getRole());
+    }
 
     public CustomUserDetails(ProfileEntity profile) {
         this.id = profile.getId();
@@ -30,6 +35,7 @@ public class CustomUserDetails implements UserDetails {
         this.visible = profile.getVisible();
         this.role = profile.getRole();
     }
+
     public CustomUserDetails(CompanyEntity company) {
         this.id = company.getId();
         this.username = company.getUsername();
@@ -41,15 +47,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        List<SimpleGrantedAuthority> roles = new LinkedList<>();
-//        roles.add(new SimpleGrantedAuthority(profile.getRole().name()));
-//        return roles;
         return new LinkedList<>(Collections.singletonList(new SimpleGrantedAuthority(role.name())));
     }
 
     @Override
     public String getPassword() {
-        return  password;
+        return password;
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.company.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -12,17 +14,18 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @MappedSuperclass
 public class BaseEntity {
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    private String id;
+    String id;
 
     @Column(name = "created_date")
-    private LocalDateTime createdDate = LocalDateTime.now();
+    LocalDateTime createdDate = LocalDateTime.now();
 
     @Column
-    private Boolean visible = true;
+    Boolean visible = true;
 
 }

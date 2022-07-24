@@ -1,0 +1,12 @@
+POST localhost:8080/transfer/public/create
+Content-Type: application/json
+
+{
+  "fromCard": "8a8a8394822ac4b901822ac5a2be0005",
+  "toCard": "8a8a8394822ac4b901822ac59e1b0004",
+  "amount": 1000,
+  "companyId": "4028ab17822792690182279271150003"
+}
+
+###
+POST localhost:8080/transfer/public/finish/8a8a8394822add3501822addb550000a

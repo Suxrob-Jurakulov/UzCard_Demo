@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class ProfileEntity extends BaseEntity{
     @Column(nullable = false)
     private String name;
-    @Column(name = "surname")
+    @Column
     private String surname;
     @Column(nullable = false, unique = true)
     private String username;

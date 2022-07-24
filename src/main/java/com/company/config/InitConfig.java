@@ -70,6 +70,17 @@ public class InitConfig {
             payment.setStatus(GeneralStatus.ACTIVE);
             payment.setRole(GeneralRole.ROLE_PAYMENT);
             companyRepository.save(payment);
+
+            CompanyEntity uzCard = new CompanyEntity();
+            uzCard.setName("UZ_CARD");
+            uzCard.setAddress("Tashkent");
+            uzCard.setContact("uzCard@gmail.com");
+            uzCard.setUsername("uzCard");
+            uzCard.setPassword(md5);
+            uzCard.setVisible(true);
+            uzCard.setStatus(GeneralStatus.ACTIVE);
+            uzCard.setRole(GeneralRole.ROLE_UZ_CARD);
+            companyRepository.save(uzCard);
         };
     }
 }

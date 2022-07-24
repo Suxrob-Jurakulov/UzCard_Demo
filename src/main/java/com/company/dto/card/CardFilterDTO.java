@@ -1,7 +1,5 @@
 package com.company.dto.card;
 
-import com.company.dto.client.ClientDTO;
-import com.company.dto.CompanyDTO;
 import com.company.enums.GeneralStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
@@ -15,16 +13,16 @@ import java.time.LocalDateTime;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CardDTO {
-    String id;
+public class CardFilterDTO {
+
+    String phone;
     String number;
     LocalDateTime createdDate;
     LocalDateTime expiredDate;
-    String phone;
     Long balance;
-    String clientId;
-    ClientDTO client;
-    String companyId;
-    CompanyDTO company;
+    String bankName;
     GeneralStatus status;
+    String clientId;
+    String clientName;
+    GeneralStatus clientStatus;
 }

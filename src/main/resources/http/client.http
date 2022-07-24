@@ -1,6 +1,6 @@
-POST localhost:8080/card/bank/create
+POST localhost:8080/client/bank/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzMDExMTgsImV4cCI6MTY1ODUxNzExOCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MjE2NWJlODAxODIxNjViZWU4OTAwMDIifQ.IB9sRScHPSK3pFuNh_ii0fssKxRuhAToSpmz4MeCbNI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTg1NzQ5NDYsImV4cCI6MTY1ODc5MDk0NiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiNDAyOGFiMTc4MjI3OTI2OTAxODIyNzkyNzExNTAwMDIiLCJyb2xlIjoiUk9MRV9CQU5LIn0.CoOYnEUyWMSqsam8s2nAXTTqaxcLiLcSAJ6A3r0O110
 
 {
   "name": "Vali",
@@ -8,5 +8,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzMDExMTgsImV4cCI6MTY1O
   "middleName": "Valijon",
   "phone": "123",
   "passportSeries": "AA",
-  "passportNumber": "1234568"
+  "passportNumber": "1434566"
+}
+
+###
+GET localhost:8080/client/adm/pagination?page=2&size=5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzODIzMDEsImV4cCI6MTY1ODU5ODMwMSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MjE2NWJlODAxODIxNjViZWU2ZTAwMDAiLCJyb2xlIjoiUk9MRV9BRE1JTiJ9.geKFcjc7b6noDP_rV1-FrB1jykGjr71-dfXamdqClH8
+
+{
+  "phone": "123"
 }

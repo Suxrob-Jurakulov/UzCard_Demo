@@ -1,9 +1,12 @@
 package com.company.dto;
 
 import com.company.enums.GeneralRole;
+import com.company.enums.GeneralStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,4 +18,6 @@ public class ProfileDTO {
     private String username;
     private String password;
     private GeneralRole role;
+    private GeneralStatus status;
+    private LocalDateTime createdDate;
 }

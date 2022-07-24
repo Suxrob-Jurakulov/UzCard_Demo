@@ -1,21 +1,31 @@
 POST localhost:8080/card/bank/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzMDI3NjQsImV4cCI6MTY1ODUxODc2NCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MjE2NWJlODAxODIxNjViZWU4OTAwMDIifQ.SnMU41PpchrclHyad0TN6X31AHStZGYdlLzcTknwRDU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTg1NzQ5NDYsImV4cCI6MTY1ODc5MDk0NiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiNDAyOGFiMTc4MjI3OTI2OTAxODIyNzkyNzExNTAwMDIiLCJyb2xlIjoiUk9MRV9CQU5LIn0.CoOYnEUyWMSqsam8s2nAXTTqaxcLiLcSAJ6A3r0O110
 
 {
-  "balance": 100000000,
-  "clientId": "ff808081821a728901821a7369970000"
+  "balance": 100000000
 }
 
+### "clientId": "ff808081821a728901821a7369970000"
 ###
 PUT localhost:8080/card/bank/assign_phone
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzMDI3NjQsImV4cCI6MTY1ODUxODc2NCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MjE2NWJlODAxODIxNjViZWU4OTAwMDIifQ.SnMU41PpchrclHyad0TN6X31AHStZGYdlLzcTknwRDU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTg0NjYwNjUsImV4cCI6MTY1ODY4MjA2NSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MjE2NWJlODAxODIxNjViZWU4OTAwMDIiLCJyb2xlIjoiUk9MRV9CQU5LIn0.b3CeYXnng3sc6uWJfueiaj_HGk64tDGi80oOgzYowIQ
 
 {
-  "id": "4028ab42821a8df001821a8e05520000",
+  "id": "ff80808182275c4c01822770d3b20002",
   "phone": "5555"
 }
 
 ###
 GET localhost:8080/card/company/get_card/4028ab42821a8df001821a8e05520000
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTg0MDM4MDUsImV4cCI6MTY1ODYxOTgwNSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MjE2NWJlODAxODIxNjViZWU4OTAwMDIiLCJyb2xlIjoiUk9MRV9CQU5LIn0.bEQRIeCA9J77dgUK2ScrQmktj734e7KlLb8Ir0j_asQ
+
+###
+GET localhost:8080/card/adm/filter
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTg0MDcxMzQsImV4cCI6MTY1ODYyMzEzNCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MjE2NWJlODAxODIxNjViZWU2ZTAwMDAiLCJyb2xlIjoiUk9MRV9BRE1JTiJ9.O92eIhH6c9BhGg1xj4E4i1GVq5DtumXMty-oCOMDEd8
+
+{
+  "balance": -100
+}

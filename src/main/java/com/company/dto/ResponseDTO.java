@@ -6,8 +6,9 @@ import lombok.Data;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LoginDTO {
+public class ResponseDTO {
     private String username;
     private GeneralRole role;
     private String jwt;
+
 }

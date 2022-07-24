@@ -1,16 +1,17 @@
 package com.company.service;
 
-import com.company.dto.ClientDTO;
 import com.company.dto.card.CardDTO;
+import com.company.dto.card.CardFilterDTO;
 import com.company.dto.card.CardPhoneDTO;
 import com.company.dto.card.CardStatusDTO;
+import com.company.dto.client.ClientDTO;
 import com.company.entity.CardEntity;
 import com.company.enums.GeneralRole;
 import com.company.enums.GeneralStatus;
 import com.company.exp.ItemNotFoundException;
 import com.company.repository.CardRepository;
+import com.company.repository.custome.CustomCardRepository;
 import com.company.util.CardNumberGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,22 +20,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-@Service
-public class CardService {
-    @Autowired
-    private CardRepository cardRepository;
-    @Autowired
-    private CardNumberGenerator cardNumberGenerator;
-    @Autowired
-    private AuthService authService;
 
+@Service
+public record CardService(CardRepository cardRepository,
+                          CardNumberGenerator cardNumberGenerator,
+                          AuthService authService,
+                          CustomCardRepository customCardRepository) {
 
     public CardDTO create(CardDTO dto) {
         CardEntity entity = new CardEntity();
         entity.setBalance(dto.getBalance());
         entity.setClientId(dto.getClientId());
         entity.setExpiredDate(LocalDateTime.now().plusYears(4));
-        entity.setNumber(cardNumberGenerator.generate("8600", 16));
+        String cardNum = cardNumberGenerator.generate("8600", 16);
+        entity.setNumber(cardNum);
+        entity.setHiddenNumber(cardNum.substring(0,4) + " **** **** " + cardNum.substring(12));
         entity.setCompanyId(authService.getCurrentUser().getId());
         entity.setStatus(GeneralStatus.NOT_ACTIVE);
         cardRepository.save(entity);
@@ -159,7 +159,7 @@ public class CardService {
 
     public CardDTO getCardBalanceByNumber(String num) {
         Optional<CardEntity> optional = cardRepository.findByNumber(num);
-        if (optional.isEmpty()){
+        if (optional.isEmpty()) {
             throw new ItemNotFoundException("Card not found!");
         }
         CardEntity entity = optional.get();
@@ -169,4 +169,22 @@ public class CardService {
         dto.setBalance(entity.getBalance());
         return dto;
     }
+
+    public List<CardDTO> getByFilter(CardFilterDTO dto) {
+        List<CardDTO> list = new LinkedList<>();
+        customCardRepository.filter(dto).forEach(entity -> {
+            list.add(getDTO(entity));
+        });
+        return list;
+    }
+
+    public boolean findByPhone(String cardPhone) {
+        List<CardEntity> card = cardRepository.findByPhone(cardPhone);
+        return !card.isEmpty();
+    }
+
+    public boolean checkByCardNumber(String cardNum){
+        return cardRepository.existsByNumber(cardNum);
+    }
 }
+

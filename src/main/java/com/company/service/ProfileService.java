@@ -1,21 +1,29 @@
 package com.company.service;
 
 import com.company.dto.ProfileDTO;
+import com.company.dto.client.ClientDTO;
+import com.company.entity.ClientEntity;
 import com.company.entity.ProfileEntity;
 import com.company.enums.GeneralRole;
 import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
 import com.company.repository.ProfileRepository;
+import com.company.repository.custome.CustomProfileRepository;
 import com.company.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
+    @Autowired
+    private CustomProfileRepository customProfileRepository;
 
     public ProfileEntity get(String id){
         return profileRepository.findById(id).orElseThrow(() -> {
@@ -57,6 +65,28 @@ public class ProfileService {
 
         dto.setId(profile.getId());
         dto.setPassword(profile.getPassword());
+        return dto;
+    }
+
+    public PageImpl<ProfileDTO> getPagination(ProfileDTO dto, int page, int size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "created_date");
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        Page<ProfileEntity> filter = customProfileRepository.filter(dto, pageable);
+        List<ProfileDTO> dtoList = new ArrayList<>();
+        filter.forEach(entity -> dtoList.add(getDTO(entity)));
+        return new PageImpl<>(dtoList, pageable, filter.getTotalElements());
+    }
+
+    public ProfileDTO getDTO(ProfileEntity entity){
+        ProfileDTO dto = new ProfileDTO();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setSurname(entity.getSurname());
+        dto.setUsername(entity.getUsername());
+        dto.setCreatedDate(entity.getCreatedDate());
+        dto.setStatus(entity.getStatus());
+        dto.setRole(entity.getRole());
         return dto;
     }
 }

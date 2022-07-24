@@ -3,6 +3,7 @@ package com.company.controller;
 import com.company.dto.ProfileDTO;
 import com.company.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,5 +25,11 @@ public class ProfileController {
         return ResponseEntity.ok().body(response);
     }
 
-    // TODO filter profile with pagination
+    @GetMapping("/adm/get")
+    public ResponseEntity<PageImpl<ProfileDTO>> get(@RequestBody ProfileDTO dto,
+                                                    @RequestParam(name = "page") int page,
+                                                    @RequestParam(name = "size") int size){
+        PageImpl<ProfileDTO> response = profileService.getPagination(dto, page, size);
+        return ResponseEntity.ok().body(response);
+    }
 }

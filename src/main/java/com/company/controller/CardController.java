@@ -1,10 +1,12 @@
 package com.company.controller;
 
 import com.company.dto.card.CardDTO;
+import com.company.dto.card.CardFilterDTO;
 import com.company.dto.card.CardPhoneDTO;
 import com.company.dto.card.CardStatusDTO;
 import com.company.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,6 +65,12 @@ public class CardController {
     public ResponseEntity<CardDTO> getCardListByNumber(@PathVariable("num") String num){
         CardDTO dto = cardService.getCardBalanceByNumber(num);
         return ResponseEntity.ok().body(dto);
+    }
+
+    @GetMapping("/adm/filter")
+    public ResponseEntity<List<CardDTO>> getByFilter(@RequestBody CardFilterDTO dto){
+        List<CardDTO> response = cardService.getByFilter(dto);
+        return ResponseEntity.ok().body(response);
     }
 
 }

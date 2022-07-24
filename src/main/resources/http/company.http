@@ -1,11 +1,12 @@
-POST localhost:8080/company/public/create
+POST localhost:8080/company/adm/create
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTg1MTc4NTYsImV4cCI6MTY1ODczMzg1NiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MjE2NWJlODAxODIxNjViZWU2ZTAwMDAiLCJyb2xlIjoiUk9MRV9BRE1JTiJ9.uZqhrHcZ9d95US5iF7E-9K55GRTcFEiFqS5aYYujv90
 
 {
-  "name": "QORA bank",
+  "name": "UZ_CARD",
   "address": "Tashkent",
-  "contact": "qora_bank@gmail.com",
-  "username": "bank",
+  "contact": "uz_card@gmail.com",
+  "username": "uz",
   "password": "123",
-  "role": "ROLE_BANK"
+  "role": "ROLE_UZ_CARD"
 }

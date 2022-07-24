@@ -1,16 +1,20 @@
 package com.company.service;
 
-import com.company.config.CustomUserDetails;
-import com.company.dto.ClientDTO;
+import com.company.dto.client.ClientDTO;
+import com.company.dto.client.ClientResponseDTO;
 import com.company.entity.ClientEntity;
 import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
 import com.company.repository.ClientRepository;
-import com.company.util.CurrentUserUtil;
+import com.company.repository.custome.CustomClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientService {
@@ -18,6 +22,8 @@ public class ClientService {
     private ClientRepository clientRepository;
     @Autowired
     private AuthService authService;
+    @Autowired
+    private CustomClientRepository customClientRepository;
 
     public ClientDTO create(ClientDTO dto) {
         Optional<ClientEntity> optional = clientRepository.findByPassportSeriesAndPassportNumber(dto.getPassportSeries(), dto.getPassportNumber());
@@ -77,5 +83,14 @@ public class ClientService {
         ClientEntity entity = get(clientId);
 //        if (entity.get)
         return null;
+    }
+
+    public PageImpl<ClientDTO> pagination(int page, int size, ClientResponseDTO dto) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "created_date");
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<ClientEntity> filter = customClientRepository.filter(dto, pageable);
+        List<ClientDTO> dtoList = new ArrayList<>();
+        filter.forEach(entity -> dtoList.add(getDTO(entity)));
+        return new PageImpl<>(dtoList, pageable, filter.getTotalElements());
     }
 }
